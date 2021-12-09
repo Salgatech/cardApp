@@ -1,5 +1,8 @@
 /*
- * 18/01/21 - Created by Samir Al Gamri
+ * 18/01/21 - Created by Salgatech
+ *
+ * Small Card application to develop
+ * knowledge in C++.
  */
 #include <iostream>
 #include <fstream>
