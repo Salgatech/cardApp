@@ -169,6 +169,10 @@ class deck{
     card getDeckELMT(int index){
       return curDeck[index];
     }
+	
+	void setDeckELMT(int index, vector<card>& vec){ // 09/12/21 SAG
+      curDeck[index] = vec[index];
+    }
 
   private:
   card curDeck[decksize];
@@ -231,7 +235,7 @@ public:
 #endif
       }
       for(int i = 0;i < decksize;i++){
-        dealerDeck.getDeckELMT(i) = tempDeckCopy[i];
+        dealerDeck.setDeckELMT(i,tempDeckCopy); // 09/12/21 SAG
       }
     }
 private:
@@ -258,3 +262,11 @@ int main(void){
 #endif
     return 0;
 }
+
+/* END OF FILE COMMENTS
+ * 09/12/21 SAG - Change to deck and dealer class
+ *                to add a definition for and call
+ *                to setDeckELMT(), in order to
+ *                to change the dealer deck data
+ *                member after being shuffled.
+ */
