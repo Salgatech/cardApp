@@ -9,9 +9,24 @@
 #include <vector>
 #include <stdlib.h>
 #include <time.h>
+
+#include "dealer.h"
+#include "deck.h"
+#include "card.h"
+#include "numOfCard.h"
+#include "card.h"
 using namespace std;
-#define DIAG1 1
-#define DIAG2 0
+
+ /* DIAGS1 turns on command line processing to show
+  * each shuffle of the deck when shuffle() is
+  * called - 27/05/23 SAG
+  */
+#define DIAG1 0
+
+ /* DIAGS2 turns on Diagnostic file output of before
+  * and after calling shuffle - 27/05/23 SAG
+  */
+#define DIAG2 1
 
 enum suit{
     hearts = 0,
@@ -173,8 +188,10 @@ class deck{
       return curDeck[index];
     }
 	
-	void setDeckELMT(int index, vector<card>& vec){ // 09/12/21 SAG
-      curDeck[index] = vec[index];
+//	void setDeckELMT(int index, vector<card>& vec){ // 09/12/21 SAG
+//  Renamed parameter name to a more memorable name. // 27/05/23 SAG
+    void setDeckELMT(int index, vector<card>& curnt_crd_elmt){
+      curDeck[index] = curnt_crd_elmt[index];
     }
 
   private:
@@ -249,8 +266,8 @@ int main(void){
     srand((unsigned) time(0));
     dealer Dan;
 #if DIAG2 || DIAG1
-    ofstream diagsBefore("diagsBefore.doc");
-    ofstream diagsAfter("diagsAfter.doc");
+    ofstream diagsBefore("diagsBefore.txt"); // 27/05/23 SAG
+    ofstream diagsAfter("diagsAfter.txt");   // 27/05/23 SAG
     if(diagsBefore){
       diagsBefore << "\n" << "**Before Shuffling**" << "\n" << endl;
     }
@@ -272,4 +289,13 @@ int main(void){
  *                to setDeckELMT(), in order to
  *                to change the dealer deck data
  *                member after being shuffled.
+ * 27/05/23 SAG - Change to add comments for
+ *                diagnostic macros at the top of
+ *                files.
+ *                Change to setDeckELMT to make
+ *                second parameter more memorable
+ *                simply "vec".
+ *                Change to main() to edit
+ *                extension of diagnositc files
+ *                from "*.doc" to "*.txt".
  */
